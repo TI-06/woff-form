@@ -17,7 +17,7 @@
     }
 
     form {
-      max-width: 420px;
+      max-width: 320px;
       width: 100%;
       margin: 0 auto;
       box-sizing: border-box;
@@ -27,17 +27,18 @@
     .group {
       border: 2px solid #ffc000;
       position: relative;
-      padding: 32px 16px 16px 16px;
       box-sizing: border-box;
       background: #fff;
     }
     /* 上グループの角丸（右上のみ）、左上はタイトルと重なるので丸めない */
     .group.top {
-      border-radius: 12px 12px 0 0;
+      border-radius: 0px 12px 0 0;
+      padding: 32px 16px 16px 16px;
       margin-bottom: -2px; /* 枠線を重ねてくっつける */
     }
     /* 下グループの角丸（左下・右下） */
     .group.bottom {
+      padding: 32px 16px 0px 16px;
       border-radius: 0 0 12px 12px;
     }
 
@@ -50,16 +51,15 @@
       left: 0;
       background-color: #ffc000;
       color: #fff;
-      font-weight: bold;
-      padding: 0px 12px;
-      font-size: 20px;
+      padding: 4px 12px;
+      font-size: 14px;
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
-      border-top-left-radius: 6px; /* 左上は丸くしない */
+      border-top-left-radius: 0px; /* 左上は丸くしない */
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
-      border-bottom-left-radius: 6px;
+      border-bottom-left-radius: 0px;
       box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
     }
 
@@ -71,9 +71,8 @@
       left: 0;
       background-color: #ffc000;
       color: #fff;
-      font-weight: bold;
-      padding: 0px 12px;
-      font-size: 20px;
+      padding: 4px 12px;
+      font-size: 14px;
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
@@ -105,7 +104,7 @@
     input[type="number"],
     input[type="tel"],
     input[type="text"] {
-      width: 130px;
+      width: 100px;
       padding: 5px;
       font-size: 12px;
       margin-top: 7px;
@@ -140,14 +139,13 @@
 
     textarea {
       border: 2px solid #ffc000;
-      border-radius: 12px;
-      padding: 10px;
+      border-radius: 30px;
       font-size: 16px;
-      width: 75%;
+      width: 108%;
       min-height: 100px;
       resize: vertical;
       box-sizing: border-box;
-      margin-left:40px;
+      margin-left:-10px
     }
 
     button {
@@ -223,16 +221,16 @@
     <div class="group bottom">
       <div class="group-title2">報告</div>
 
-      <label style="margin-left:35px">7. 簡易報告</label>
-      <div class="radio-group"  style="margin-left:40px">
-        <label><input type="radio" name="summary" value="著変なく穏やかに過ごされています。" checked> 著変なく穏やかに過ごされています。</label>
-        <label><input type="radio" name="summary" value="少し報告ありますが、経過観察で大丈夫です。"> 少し報告ありますが、経過観察で大丈夫です。</label>
-        <label><input type="radio" name="summary" value="報告あります、対応が必要と思います。"> 報告あります、対応が必要と思います。</label>
-        <label><input type="radio" name="summary" value="要求あります。"> 要求あります。</label>
+      <label>7. 簡易報告</label>
+      <div class="radio-group"  style="margin-left:5px">
+        <label><input type="radio" name="summary" value="著変なく過ごされています。" checked> 著変なく過ごされています。</label>
+        <label><input type="radio" name="summary" value="軽度変化あるも、経過観察可能です。"> 軽度変化あるも、経過観察可能です。</label>
+        <label><input type="radio" name="summary" value="変化あり、対応が必要です。"> 変化あり、対応が必要です。</label>
+        <label><input type="radio" name="summary" value="要望あります。"> 要望あります。</label>
       </div>
 
-      <label  style="margin-left:35px" for="detail">8. 詳細報告</label>
-      <textarea id="detail" name="detail" placeholder="" rows="10"></textarea>
+      <label  for="detail">8. 詳細報告</label>
+      <textarea id="detail" name="detail" placeholder="" rows="8"></textarea>
     </div>
 
     <button type="button" onclick="sendToTalk()">送信</button>
@@ -278,7 +276,8 @@
         type: 'text',
         content: message
       }).then(() => {
-        alert('トークに送信しました');
+        alert('送信しました');
+        woff.closeWindow();
       }).catch(err => {
         alert('送信エラー：' + err.message);
       });
