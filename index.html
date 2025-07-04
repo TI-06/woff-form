@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <!-- viewportは以下のように -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>ナースコール</title>
+  <script src="https://static.worksmobile.net/static/wm/woff/edge/3.6/sdk.js"></script>
+  <style>
+    body {
+      font-family: 'Yu Gothic', 'メイリオ', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 10px;
+      background: #fff;
+      color: #333;
+      box-sizing: border-box;
+    }
+
+    /* 画面幅に対してフォーム幅を最大420pxでかつ100%幅に */
+    form {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 2.2em;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 16px;
+      background-color: #ffc000;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: inline-block;
+      width: 110px;
+      font-weight: 600;
+      margin-top: 12px;
+      box-sizing: border-box;
+    }
+
+    label.tani_label {
+      display: inline-block;
+      width: 70px;
+      font-weight: 600;
+      margin-top: 12px;
+      margin-left: 10px;
+      box-sizing: border-box;
+    }
+
+    input[type="number"],
+    input[type="tel"],
+    input[type="text"] {
+      width: 130px;
+      padding: 10px;
+      font-size: 13px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: #ffc000;
+      margin: 20px 0;
+    }
+
+    .radio-group {
+      margin-top: 10px;
+    }
+
+    .radio-group label {
+      display: inline-block;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 0;
+      margin-top: 0;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      border: 2px solid #ffc000;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      min-height: 100px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 14px 0;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0078d4;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #005a9e;
+    }
+
+  </style>
+</head>
+<body>
+  <h2>ナースコール</h2>
+  <form id="healthForm" autocomplete="off" novalidate>
+
+    <div class="form-row">
+      <label for="systolic">1. 収縮期血圧</label>
+      <input type="text" inputmode="decimal" pattern="[0-9.]*" id="systolic" name="systolic" max="250" required />
+      <label class="tani_label">(mmHg)</label>
+    </div>
+
+    <div class="form-row">
+      <label for="diastolic">2. 拡張期血圧</label>
+      <input type="text" inputmode="decimal" pattern="[0-9.]*" id="diastolic" name="diastolic" max="150" required />
+      <label class="tani_label">(mmHg)</label>
+    </div>
+
+    <div class="form-row">
+      <label for="pulse">3. 脈拍</label>
+      <input type="text" inputmode="decimal" pattern="[0-9.]*" id="pulse" name="pulse" max="200" required />
+      <label class="tani_label">(bpm)</label>
+    </div>
+
+    <hr />
+
+    <div class="form-row">
+      <label for="spo2">4. SpO2</label>
+      <input type="text" inputmode="decimal" pattern="[0-9.]*" id="spo2" name="spo2" max="100" step="0.1" required />
+      <label class="tani_label">(%)</label>
+    </div>
+
+    <div class="form-row">
+      <label for="temperature">5. 体温</label>
+      <input type="text" inputmode="decimal" pattern="[0-9.]*" id="temperature" name="temperature" max="45" step="0.1" required />
+      <label class="tani_label">(℃)</label>
+    </div>
+
+    <div class="form-row">
+      <label for="weight">6. 体重</label>
+      <input type="text" inputmode="decimal" pattern="[0-9.]*" id="weight" name="weight" max="300" step="0.1" required />
+      <label class="tani_label">(Kg)</label>
+    </div>
+
+    <hr />
+
+    <label>7. 簡易報告</label>
+    <div class="radio-group">
+      <label><input type="radio" name="summary" value="著変なく穏やかに過ごされています。" checked> 著変なく穏やかに過ごされています。</label>
+      <label><input type="radio" name="summary" value="少し報告ありますが、経過観察で大丈夫です。"> 少し報告ありますが、経過観察で大丈夫です。</label>
+      <label><input type="radio" name="summary" value="報告あります、対応が必要と思います。"> 報告あります、対応が必要と思います。</label>
+      <label><input type="radio" name="summary" value="要求あります。"> 要求あります。</label>
+    </div>
+
+    <label for="detail">8. 詳細報告</label>
+    <textarea id="detail" name="detail" placeholder="" rows="10"></textarea>
+
+    <button type="button" onclick="sendToTalk()">トークに送信</button>
+  </form>
+  <script>
+    window.addEventListener('load', () => {
+      woff.init({ woffId: '1XwSve5t9Gn1GCQ_DScbBw' })
+        .then(() => console.log('WOFF SDK initialized'))
+        .catch(err => alert('初期化エラー：' + err.message));
+    });
+
+    function sendToTalk() {
+      const form = document.getElementById('healthForm');
+      if (!form.reportValidity()) {
+        alert('すべての必須項目を入力してください');
+        return;
+      }
+
+      const systolic = form.systolic.value;
+      const diastolic = form.diastolic.value;
+      const pulse = form.pulse.value;
+      const spo2 = form.spo2.value;
+      const temperature = form.temperature.value;
+      const weight = form.weight.value;
+      const summary = form.querySelector('input[name="summary"]:checked').value;
+      const detail = form.detail.value.trim();
+
+      let message =
+        `◇バイタルサイン\n` +
+        `血圧: ${systolic}/${diastolic} mmHg\n` +
+        `脈拍: ${pulse} bpm\n` +
+        `SpO2: ${spo2} %\n` +
+        `体温: ${temperature} ℃\n` +
+        `体重: ${weight} Kg\n\n` +
+        `◇総評\n${summary}\n\n`;
+
+      if (detail) {
+        message += `◇詳細報告\n${detail}`;
+      }
+
+      woff.sendMessage({
+        type: 'text',
+        content: message
+      }).then(() => {
+        alert('トークに送信しました');
+      }).catch(err => {
+        alert('送信エラー：' + err.message);
+      });
+    }
+  </script>
+</body>
+</html>
