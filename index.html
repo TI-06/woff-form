@@ -139,19 +139,18 @@
 
     textarea {
       border: 2px solid #ffc000;
-      border-radius: 30px;
+      border-radius: 10px;
       font-size: 16px;
-      width: 108%;
+      width: 100%;
       min-height: 100px;
       resize: vertical;
       box-sizing: border-box;
-      margin-left:-10px
     }
 
     button {
-      margin-top: 24px;
+      margin-top: 14px;
       width: 100%;
-      padding: 14px 0;
+      padding: 7px 0;
       font-size: 18px;
       border: none;
       border-radius: 8px;
@@ -230,7 +229,7 @@
       </div>
 
       <label  for="detail">8. 詳細報告</label>
-      <textarea id="detail" name="detail" placeholder="" rows="8"></textarea>
+      <textarea id="detail" name="detail" placeholder="" rows="10"></textarea>
     </div>
 
     <button type="button" onclick="sendToTalk()">送信</button>
@@ -266,7 +265,7 @@
         `SpO2: ${spo2} %\n` +
         `体温: ${temperature} ℃\n` +
         `体重: ${weight} Kg\n\n` +
-        `◇総評\n${summary}\n\n`;
+        `◇簡易報告\n${summary}\n\n`;
 
       if (detail) {
         message += `◇詳細報告\n${detail}`;
