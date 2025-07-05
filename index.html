@@ -258,19 +258,50 @@
       const summary = form.querySelector('input[name="summary"]:checked').value;
       const detail = form.detail.value.trim();
 
-      let message =
-        `◇バイタルサイン\n` +
-        `血圧: ${systolic}/${diastolic} mmHg\n` +
-        `脈拍: ${pulse} bpm\n` +
-        `SpO2: ${spo2} %\n` +
-        `体温: ${temperature} ℃\n` +
-        `体重: ${weight} Kg\n\n` +
-        `◇簡易報告\n${summary}\n\n`;
+      //let message =
+      //  `◇バイタルサイン\n` +
+      //  `血圧: ${systolic}/${diastolic} mmHg\n` +
+      //  `脈拍: ${pulse} bpm\n` +
+      //  `SpO2: ${spo2} %\n` +
+      //  `体温: ${temperature} ℃\n` +
+      //  `体重: ${weight} Kg\n\n` +
+      //  `◇簡易報告\n${summary}\n\n`;
 
-      if (detail) {
-        message += `◇詳細報告\n${detail}`;
+      let message = '';
+
+      if (systolic || diastolic) {
+        message += `\n血圧: ${systolic}/${diastolic} mmHg` ;
+      }
+      
+      if (pulse) {
+        message += `\n脈拍: ${pulse} bpm`;
+      } 
+      
+      if (spo2) {
+        message += `\nSpO2: ${spo2} %`;
+      }
+      
+      if (temperature) {
+        message += `\n体温: ${temperature} ℃`;
+      }
+                       
+      if (weight) {
+        message += `\n体重: ${weight} Kg`;
+      }
+      
+      if (message != ''){
+        message = `◇バイタルサイン` + message + `\n\n`;
       }
 
+      if (summary) {
+        message += `◇簡易報告\n${summary}`;
+      }
+
+                       
+      if (detail) {
+        message += `\n\n◇詳細報告\n${detail}`;
+      }
+      
       woff.sendMessage({
         type: 'text',
         content: message
