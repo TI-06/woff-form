@@ -124,8 +124,6 @@
       margin-top: 10px;
     }
 
-
-
     .radio-group label {
       display: inline-block;
       width: 100%;
@@ -148,6 +146,10 @@
     }
 
     button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1px; /* テキストと画像の間隔 */
       margin-top: 14px;
       width: 100%;
       padding: 7px 0;
@@ -162,6 +164,18 @@
       transition: background-color 0.3s ease;
       box-sizing: border-box;
     }
+
+    .btn-icon {
+      height: 22px;
+      width: auto;
+      display: inline-block;
+    }
+
+    .btn-text {
+      display: inline-block;
+      line-height: 1;
+    }
+
 
     button:hover,
     button:focus {
@@ -232,7 +246,10 @@
       <textarea id="detail" name="detail" placeholder="" rows="10"></textarea>
     </div>
 
-    <button type="button" onclick="sendToTalk()">送信✈</button>
+    <button type="button" onclick="sendToTalk()">
+      <span class="btn-text">送信</span>
+      <img src="img/sendBtnImg.png" class="btn-icon" alt="送信アイコン" />
+    </button>
   </form>
 
   <script>
